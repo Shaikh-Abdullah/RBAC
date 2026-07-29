@@ -3,7 +3,6 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import PortalUser from "../models/PortalUser";
 import Roles from "../models/Roles";
-import { permission } from "node:process";
 
 const routes = Router();
 
@@ -21,7 +20,9 @@ routes.post("/signup", async (req, res) => {
     if (!roleDoc) {
       return res.status(400).json({ message: `Role "${role}" does not exist` });
     }
-    const hashedPassword = await bcrypt.hash(password, 5);
+
+    const hashedPassword = await bcrypt.hash(password, 10);
+
     const user = await PortalUser.create({
       name,
       email,
@@ -32,7 +33,7 @@ routes.post("/signup", async (req, res) => {
     res.status(201).json({
       id: user._id,
       name: user.name,
-      password: user.password,
+      email: user.email,
       role: roleDoc.name,
     });
   } catch (err: any) {
@@ -78,9 +79,8 @@ routes.post("/login", async (req, res) => {
         id: user._id,
         name: user.name,
         email: user.email,
-        // role: user.role,
         role: roleDoc.name,
-        permission: roleDoc.permissions,
+        permissions: roleDoc.permissions, // fixed: plural
       },
     });
   } catch (error) {

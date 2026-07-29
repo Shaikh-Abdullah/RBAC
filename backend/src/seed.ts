@@ -19,7 +19,7 @@ const roles = [
   {
     name: "admin",
     label: "Admin",
-    permission: [
+    permissions: [
       "bookings:view",
       "bookings:edit",
       "bookings:delete",
@@ -27,6 +27,7 @@ const roles = [
       "staff:manage",
       "finance:view",
       "reports:view",
+      "roles:manage",
     ],
   },
   {
