@@ -4,7 +4,7 @@ import mongoose from "mongoose";
 import dotenv from "dotenv";
 
 import rolesRoute from "./routes/roles";
-import authRoute from "./routes/user";
+import authRoute from "./routes/auth";
 
 dotenv.config();
 
