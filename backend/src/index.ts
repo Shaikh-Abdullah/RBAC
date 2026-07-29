@@ -3,11 +3,15 @@ import cors from "cors";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 
+import rolesRoute from "./routes/roles";
+
 dotenv.config();
 
 const app = express();
 app.use(cors());
 app.use(express.json());
+
+app.use("/api/roles", rolesRoute);
 
 const PORT = process.env.PORT || 3000;
 const MONGODB_URI = process.env.MONGODB_URL as string;
