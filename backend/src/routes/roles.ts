@@ -5,7 +5,7 @@ import { requirePermission } from "../middleware/requirePermission";
 
 const route = Router();
 
-route.get("/", async (req, res) => {
+route.get("/", requireAuth, async (req, res) => {
   try {
     const role = await Roles.find().sort({ name: 1 });
     if (!role) {
@@ -17,7 +17,7 @@ route.get("/", async (req, res) => {
   }
 });
 
-route.get("/:name", async (req, res) => {
+route.get("/:name", requireAuth, async (req, res) => {
   try {
     const role = await Roles.findOne({ name: req.params.name });
     if (!role) {

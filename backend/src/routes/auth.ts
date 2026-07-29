@@ -3,6 +3,7 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import PortalUser from "../models/PortalUser";
 import Roles from "../models/Roles";
+import { requireAuth, AuthenticatedRequest } from "../middleware/auth";
 
 const routes = Router();
 
@@ -86,6 +87,10 @@ routes.post("/login", async (req, res) => {
   } catch (error) {
     res.status(500).json({ message: "Login failed" });
   }
+});
+
+routes.get("/me", requireAuth, async (req: AuthenticatedRequest, res) => {
+  res.json({ user: req.user });
 });
 
 export default routes;
