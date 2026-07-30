@@ -14,16 +14,16 @@ export const AuthContext = createContext<AuthContextValue | null>(null);
 
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<AuthUser | null>(null);
-  const [isLoading, setisLoading] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   async function login(email: string, password: string) {
-    setisLoading(true);
+    setIsLoading(true);
     try {
       const { token, user } = await authApi.login(email, password);
       localStorage.setItem(TOKEN_KEY, token);
       setUser(user);
     } finally {
-      setisLoading(false);
+      setIsLoading(false);
     }
   }
 
