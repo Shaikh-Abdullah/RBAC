@@ -4,6 +4,7 @@ import jwt from "jsonwebtoken";
 import PortalUser from "../models/PortalUser";
 import Roles from "../models/Roles";
 import { requireAuth, AuthenticatedRequest } from "../middleware/auth";
+import PortalBlacklistedToken from "../models/PortalBlacklistedToken";
 
 const routes = Router();
 
