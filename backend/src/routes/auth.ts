@@ -94,4 +94,17 @@ routes.get("/me", requireAuth, async (req: AuthenticatedRequest, res) => {
   res.json({ user: req.user });
 });
 
+routes.post("/logout", requireAuth, async (req, res) => {
+  try {
+    const authHeader = req.header("Authorization");
+    const token = authHeader!.split(" ")[1];
+    const decoded = jwt.decode(token) as { exp: number };
+    const expiredAt = new Date(decoded.exp * 1000);
+    await PortalBlacklistedToken.create({ token, expiredAt });
+    res.json({ message: "Logged out" });
+  } catch (error) {
+    res.status(500).json({ message: "Logout failed" });
+  }
+});
+
 export default routes;

@@ -1,6 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 import jwt from "jsonwebtoken";
 import PortalUser from "../models/PortalUser";
+import PortalBlacklistedToken from "../models/PortalBlacklistedToken";
 
 export interface AuthenticatedRequest extends Request {
   user?: {
@@ -23,6 +24,10 @@ export async function requireAuth(
         .json({ message: "Missing or invalid Authorization header" });
     }
     const token = authHeader.split(" ")[1];
+    const isBlacklisted = await PortalBlacklistedToken.findOne({ token });
+    if (isBlacklisted) {
+      return res.status(401).json({ message: "Token has been logged out" });
+    }
     const decoded = jwt.verify(token, process.env.JWT_SECRET as string) as {
       id: string;
       role: string;
