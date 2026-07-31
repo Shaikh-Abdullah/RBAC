@@ -7,7 +7,7 @@ export function AppProviders({ children }: { children: ReactNode }) {
     <AuthProvider>
       {children}
       <Toaster
-        position="top-right"
+        position="top-center"
         toastOptions={{
           duration: 4000,
           style: {
