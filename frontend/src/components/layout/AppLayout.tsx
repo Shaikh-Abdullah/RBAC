@@ -11,7 +11,7 @@ export function AppLayout() {
     <div className="min-h-screen bg-paper flex">
       <aside className="w-56 shrink-0 bg-ink text-paper p-6 flex flex-col justify-between">
         <div>
-          <div className="font-display text-lg font-semibold">Suite Life</div>
+          <div className="font-display text-lg font-semibold">Aura Life</div>
           <nav className="mt-8 flex flex-col gap-1">
             <NavLink
               to={PATHS.DASHBOARD.link}

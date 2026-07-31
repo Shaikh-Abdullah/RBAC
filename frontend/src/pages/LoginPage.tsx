@@ -1,4 +1,4 @@
-import React, { useState, type FormEvent } from "react";
+import { useState, type FormEvent } from "react";
 import { useAuth } from "../auth/useAuth";
 import toast from "react-hot-toast";
 
@@ -51,7 +51,7 @@ const LoginPage = () => {
       <div className="hidden lg:flex flex-col justify-between bg-ink text-paper p-12 relative overflow-hidden">
         <div>
           <div className="font-display text-xl font-semibold tracking-tight">
-            Suite Life
+            Aura Life
           </div>
           <div className="mt-1 font-mono text-xs text-brass-light uppercase tracking-widest">
             Operations Console
@@ -81,7 +81,7 @@ const LoginPage = () => {
         <div className="w-full max-w-sm">
           <div className="lg:hidden mb-8">
             <div className="font-display text-xl font-semibold text-ink">
-              Suite Life
+              Aura Life
             </div>
             <div className="mt-1 font-mono text-xs text-teal uppercase tracking-widest">
               Operations Console
@@ -92,7 +92,7 @@ const LoginPage = () => {
             Sign in
           </h2>
           <p className="mt-1 text-sm text-slate">
-            Use your Suite Life staff account.
+            Use your Aura Life staff account.
           </p>
 
           <form className="mt-8 space-y-5" onSubmit={handleSubmit}>
