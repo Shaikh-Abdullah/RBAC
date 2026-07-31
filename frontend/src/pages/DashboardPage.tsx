@@ -1,9 +1,12 @@
 import { useAuth } from "../auth/useAuth";
-import { useRbacContext } from "../rbac/RbacProvider";
+import { useCan } from "../rbac/useCan";
+import { Permission } from "../rbac/permissions";
+import { CanGate } from "../rbac/CanGate";
 
 export default function DashboardPage() {
   const { user, logout } = useAuth();
-  const { permissions } = useRbacContext();
+  const canManageRoles = useCan(Permission.RolesManage);
+  const canViewFinance = useCan(Permission.FinanceView);
 
   return (
     <div className="min-h-screen bg-paper p-12">
@@ -14,8 +17,23 @@ export default function DashboardPage() {
         Role: <span className="font-mono">{user?.role}</span>
       </p>
       <p className="mt-2 text-sm text-slate">
-        Permissions: <span className="font-mono">{permissions.join(", ")}</span>
+        Can manage roles: <strong>{canManageRoles ? "Yes" : "No"}</strong>
       </p>
+      <p className="mt-2 text-sm text-slate">
+        Can view finance: <strong>{canViewFinance ? "Yes" : "No"}</strong>
+      </p>
+      <CanGate
+        perm={Permission.RolesManage}
+        fallback={
+          <p className="mt-4 text-sm text-slate">
+            No access to role management.
+          </p>
+        }
+      >
+        <button className="mt-4 rounded-lg bg-teal px-4 py-2 text-sm font-medium text-paper hover:opacity-90">
+          Manage Roles
+        </button>
+      </CanGate>
       <button
         onClick={logout}
         className="mt-6 rounded-lg bg-ink px-4 py-2 text-sm font-medium text-paper hover:bg-ink-light"
