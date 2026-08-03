@@ -9,6 +9,12 @@ export interface Role {
   updatedAt: string;
 }
 
+export interface CreateRolePayload {
+  name: string;
+  label: string;
+  permissions: string[];
+}
+
 export async function getRoles(): Promise<Role[]> {
   const { data } = await apiClient.get<Role[]>("/roles");
   return data;
@@ -25,4 +31,13 @@ export async function updateRole(
 ): Promise<Role> {
   const { data } = await apiClient.put<Role>(`/roles/${name}`, { permissions });
   return data;
+}
+
+export async function createRole(payload: CreateRolePayload): Promise<Role> {
+  const { data } = await apiClient.post<Role>("/roles", payload);
+  return data;
+}
+
+export async function deleteRole(name: string): Promise<void> {
+  await apiClient.delete(`/roles/${name}`);
 }

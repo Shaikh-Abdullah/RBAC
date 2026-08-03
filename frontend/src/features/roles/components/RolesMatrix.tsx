@@ -76,17 +76,17 @@ export function RolesMatrix() {
   return (
     <div>
       <div className="overflow-hidden rounded-2xl border border-slate/15 shadow-sm">
-        <div className="max-h-[600px] overflow-auto">
+        <div className="max-h-150 overflow-auto">
           <table className="min-w-full border-collapse text-sm">
             <thead className="sticky top-0 z-20">
               <tr>
-                <th className="sticky left-0 z-30 min-w-[220px] border-b border-slate/15 bg-ink px-5 py-3.5 text-left font-mono text-[11px] font-medium uppercase tracking-wider text-brass-light">
+                <th className="sticky left-0 z-30 min-w-55 border-b border-slate/15 bg-ink px-5 py-3.5 text-left font-mono text-[11px] font-medium uppercase tracking-wider text-brass-light">
                   Permission
                 </th>
                 {roles.map((role) => (
                   <th
                     key={role._id}
-                    className="min-w-[130px] border-b border-l border-slate/10 bg-ink px-4 py-3.5 text-center font-display text-sm font-medium text-paper"
+                    className="min-w-32.5 border-b border-l border-slate/10 bg-ink px-4 py-3.5 text-center font-display text-sm font-medium text-paper"
                   >
                     <div className="flex flex-col items-center gap-0.5">
                       <span>{role.label}</span>
@@ -141,7 +141,7 @@ export function RolesMatrix() {
                             {checked && (
                               <svg
                                 viewBox="0 0 12 10"
-                                className="h-2.5 w-2.5 fill-none stroke-paper stroke-[2]"
+                                className="h-2.5 w-2.5 fill-none stroke-paper stroke-2"
                               >
                                 <path
                                   d="M1 5l3 3 7-7"
