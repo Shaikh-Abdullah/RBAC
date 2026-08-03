@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useRoles, useUpdateRole } from "../hooks";
 import { Permission } from "../../../rbac/permissions";
 import { useCan } from "../../../rbac/useCan";
+import CreateRoleForm from "./CreateRoleForm";
 
 const ALL_PERMISSIONS = Object.values(Permission);
 
@@ -11,6 +12,7 @@ export function RolesMatrix() {
   const canEdit = useCan(Permission.RolesManage);
 
   const [drafts, setDrafts] = useState<Record<string, string[]>>({});
+  const [showCreateForm, setShowCreateForm] = useState<boolean>(false);
 
   useEffect(() => {
     if (!roles) return;
@@ -75,6 +77,25 @@ export function RolesMatrix() {
 
   return (
     <div>
+      {canEdit && (
+        <div className="mb-4 flex items-center justify-between">
+          <h2 className="font-display text-lg font-medium text-ink">
+            Roles &amp; Permissions
+          </h2>
+          {!showCreateForm && (
+            <button
+              onClick={() => setShowCreateForm(true)}
+              className="rounded-lg border border-teal/40 px-3 py-1.5 text-xs font-medium text-teal hover:bg-teal/5"
+            >
+              + New role
+            </button>
+          )}
+        </div>
+      )}
+
+      {showCreateForm && (
+        <CreateRoleForm onDone={() => setShowCreateForm(false)} />
+      )}
       <div className="overflow-hidden rounded-2xl border border-slate/15 shadow-sm">
         <div className="max-h-150 overflow-auto">
           <table className="min-w-full border-collapse text-sm">
