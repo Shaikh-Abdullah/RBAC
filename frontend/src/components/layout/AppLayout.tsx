@@ -8,8 +8,8 @@ export function AppLayout() {
   const { user, logout } = useAuth();
 
   return (
-    <div className="min-h-screen bg-paper flex">
-      <aside className="w-56 shrink-0 bg-ink text-paper p-6 flex flex-col justify-between">
+    <div className="min-h-screen bg-paper flex flex-col lg:flex-row">
+      <aside className="w-full shrink-0 bg-ink text-paper p-4 sm:p-6 flex flex-col justify-between lg:w-56">
         <div>
           <div className="font-display text-lg font-semibold">Aura Life</div>
           <nav className="mt-8 flex flex-col gap-1">
@@ -47,7 +47,7 @@ export function AppLayout() {
         </div>
       </aside>
 
-      <main className="flex-1 p-10 overflow-x-auto">
+      <main className="min-w-0 flex-1 overflow-x-auto p-4 sm:p-6 lg:p-10">
         <Outlet />
       </main>
     </div>

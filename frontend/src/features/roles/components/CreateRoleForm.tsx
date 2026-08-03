@@ -29,9 +29,9 @@ const CreateRoleForm = ({ onDone }: { onDone: () => void }) => {
   return (
     <form
       onSubmit={handleSubmit}
-      className="mb-4 flex flex-wrap items-end gap-3 rounded-xl border border-slate/15 bg-white p-4"
+      className="mb-4 flex flex-col gap-3 rounded-xl border border-slate/15 bg-white p-4 sm:flex-row sm:flex-wrap sm:items-end"
     >
-      <div className="flex-1 min-w-[160px]">
+      <div className="min-w-0 flex-1 sm:min-w-[160px]">
         <label className="block text-xs font-medium text-ink">
           Display label
         </label>
@@ -44,7 +44,7 @@ const CreateRoleForm = ({ onDone }: { onDone: () => void }) => {
         />
       </div>
 
-      <div className="flex-1 min-w-[160px]">
+      <div className="min-w-0 flex-1 sm:min-w-[160px]">
         <label className="block text-xs font-medium text-ink">
           Internal name <span className="text-slate">(auto from label)</span>
         </label>
@@ -60,20 +60,22 @@ const CreateRoleForm = ({ onDone }: { onDone: () => void }) => {
         />
       </div>
 
-      <button
-        type="submit"
-        disabled={createRole.isPending}
-        className="rounded-lg bg-teal px-4 py-2 text-sm font-medium text-paper hover:opacity-90 disabled:opacity-50"
-      >
-        {createRole.isPending ? "Creating…" : "Create role"}
-      </button>
-      <button
-        type="button"
-        onClick={onDone}
-        className="rounded-lg px-4 py-2 text-sm text-slate hover:text-ink"
-      >
-        Cancel
-      </button>
+      <div className="flex w-full flex-col gap-2 sm:ml-auto sm:w-auto sm:flex-row sm:flex-wrap">
+        <button
+          type="submit"
+          disabled={createRole.isPending}
+          className="w-full rounded-lg bg-teal px-4 py-2 text-sm font-medium text-paper hover:opacity-90 disabled:opacity-50 sm:w-auto"
+        >
+          {createRole.isPending ? "Creating…" : "Create role"}
+        </button>
+        <button
+          type="button"
+          onClick={onDone}
+          className="w-full rounded-lg px-4 py-2 text-sm text-slate hover:text-ink sm:w-auto"
+        >
+          Cancel
+        </button>
+      </div>
     </form>
   );
 };

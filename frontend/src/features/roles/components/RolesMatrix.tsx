@@ -78,7 +78,7 @@ export function RolesMatrix() {
   return (
     <div>
       {canEdit && (
-        <div className="mb-4 flex items-center justify-between">
+        <div className="mb-4 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
           <h2 className="font-display text-lg font-medium text-ink">
             Roles &amp; Permissions
           </h2>
@@ -97,17 +97,17 @@ export function RolesMatrix() {
         <CreateRoleForm onDone={() => setShowCreateForm(false)} />
       )}
       <div className="overflow-hidden rounded-2xl border border-slate/15 shadow-sm">
-        <div className="max-h-150 overflow-auto">
-          <table className="min-w-full border-collapse text-sm">
+        <div className="max-h-150 w-full overflow-x-auto overflow-y-auto">
+          <table className="min-w-full sm:min-w-max border-collapse text-sm">
             <thead className="sticky top-0 z-20">
               <tr>
-                <th className="sticky left-0 z-30 min-w-55 border-b border-slate/15 bg-ink px-5 py-3.5 text-left font-mono text-[11px] font-medium uppercase tracking-wider text-brass-light">
+                <th className="sticky left-0 z-30 min-w-[10rem] border-b border-slate/15 bg-ink px-5 py-3.5 text-left font-mono text-[11px] font-medium uppercase tracking-wider text-brass-light">
                   Permission
                 </th>
                 {roles.map((role) => (
                   <th
                     key={role._id}
-                    className="min-w-32.5 border-b border-l border-slate/10 bg-ink px-4 py-3.5 text-center font-display text-sm font-medium text-paper"
+                    className="min-w-[8rem] border-b border-l border-slate/10 bg-ink px-4 py-3.5 text-center font-display text-sm font-medium text-paper"
                   >
                     <div className="flex flex-col items-center gap-0.5">
                       <span>{role.label}</span>
@@ -185,7 +185,7 @@ export function RolesMatrix() {
 
       {canEdit && (
         <div
-          className={`mt-4 flex items-center justify-between rounded-xl border px-4 py-3 transition-all ${
+          className={`mt-4 flex flex-col gap-3 rounded-xl border px-4 py-3 transition-all sm:flex-row sm:items-center sm:justify-between ${
             dirtyRoles.length > 0
               ? "border-brass/30 bg-brass/10 opacity-100"
               : "pointer-events-none border-transparent opacity-0"
